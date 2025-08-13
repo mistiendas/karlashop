@@ -1,0 +1,44 @@
+body {
+  background-color: #1e1e2f;
+  color: white;
+}
+
+h1 {
+  text-align: center;
+  color: #f0f0f0;
+}
+
+label {
+  color: #dcdcdc;
+  font-size: 20px;
+  text-align: center;
+  margin: 50px;
+}
+
+input {
+  padding: 3px;
+  text-align: center;
+  border: 1px solid #444;
+  font-size: 16px;
+}
+
+button {
+  background-color: #4a4a6a;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0px 18%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+#formulario {
+  text-align: center;
+  max-width: 400px;
+  margin: 100px auto;
+  border-radius: 3%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  font-size: 16px;
+  background-color: #2a2a3b;
+}

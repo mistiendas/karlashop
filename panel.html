@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel de control</title>
+    <link rel="stylesheet" href="panel.css" />
+    <script src="panel.js"></script>
+  </head>
+  <body>
+    <h1>Hola Karla, que deseas hacer hoy?</h1>
+
+    <ul id="menu" class="opciones">
+      <li><button id="ver">Ver Productos</button></li>
+      <li><button id="añadir">Añadir Productos</button></li>
+      <li><button id="eliminar">Eliminar Productos</button></li>
+      <li><button id="pedidos">Ver Pedidos</button></li>
+      <li><button id="graficas">Graficas</button></li>
+    </ul>
+
+    <fieldset>
+      <div id="verP" class="opcionesMenu">
+        <div id="plantilla">
+          <h2 id="nombreP">Nombre producto</h2>
+          <h2 id="fecha">fecha</h2>
+          <h3 id="descripcionC">Descripcion Corta</h3>
+          <p id="descripcionL">descripcion del Producto larga</p>
+          <img id="imagen1" src="" alt="imagen1" />
+          <img id="imagen2" src="" alt="imagen2" />
+          <img id="imagen3" src="" alt="imagen3" />
+          <h2 id="categoria">categoria</h2>
+          <h2 id="Diashabil">Dias habil</h2>
+          <h2 id="Tallas">Tallas</h2>
+          <h2 id="Gratis">Gratis</h2>
+          <h2 id="Precioventa">Precio venta</h2>
+          <h2 id="Preciocompra">Precio compra</h2>
+          <h2 id="Marca">Marca</h2>
+          <h2 id="CodigoProducto">Codigo Producto</h2>
+          <h2 id="Activo">Activo</h2>
+
+          <h1>-----------------------------</h1>
+        </div>
+
+        <div id="productos"></div>
+      </div>
+
+      <div id="añadirP" class="opcionesMenu">
+        <form id="formularioAñadir">
+          <label for="nombreP">Nombre Producto:</label>
+          <input type="text" id="nombreP" name="nombreP" required />
+          <br />
+          <label for="descripcionC">Descripcion Corta:</label>
+          <input type="text" id="descripcionC" name="descripcionC" required />
+          <br />
+
+          <label for="descripcionL">Descripcion Larga:</label>
+          <textarea id="descripcionL" name="descripcionL" required></textarea>
+          <br />
+
+          <label for="catidadBodega">Cantidad Bodega:</label>
+          <input
+            type="number"
+            id="catidadBodega"
+            name="catidadBodega"
+            required
+          />
+          <br />
+
+          <label for="imagen1">Link Imagen 1:</label>
+          <input type="url" id="imagen1" name="imagen1" required />
+          <br />
+
+          <label for="imagen2">Link Imagen 2:</label>
+          <input type="url" id="imagen2" name="imagen2" />
+          <br />
+
+          <label for="imagen3">Link Imagen 3:</label>
+          <input type="url" id="imagen3" name="imagen3" />
+          <br />
+
+          <label for="categoria">Categoría:</label>
+          <select id="categoria" name="categoria" required>
+            <option value="">-- Selecciona una categoría --</option>
+            <option value="TENIS">TENIS</option>
+            <option value="HOMBRE">HOMBRE</option>
+            <option value="MUJER">MUJER</option>
+            <option value="HOGAR">HOGAR</option>
+            <option value="ACCESORIOS">ACCESORIOS</option>
+          </select>
+          <br />
+
+          <label for="Diashabil">Dias Habil:</label>
+          <input type="number" id="Diashabil" name="Diashabil" required />
+          <br />
+
+          <label for="Tallas">Tallas:</label>
+          <input type="text" id="Tallas" name="Tallas" required />
+          <br />
+
+          <label for="Gratis">Gratis:</label>
+          <input type="checkbox" id="Gratis" name="Gratis" />
+          <br />
+
+          <label for="Precioventa">Precio Venta:</label>
+          <input type="number" id="Precioventa" name="Precioventa" required />
+          <br />
+
+          <label for="Preciocompra">Precio Compra:</label>
+          <input type="number" id="Preciocompra" name="Preciocompra" required />
+          <br />
+
+          <label for="Marca">Marca:</label>
+          <input type="text" id="Marca" name="Marca" />
+          <br />
+
+          <br />
+
+          <button type="submit">Añadir Producto</button>
+        </form>
+      </div>
+
+      <div id="eliminarP" class="opcionesMenu">
+        <form id="formularioEliminar">
+          <label for="codigoEliminar">Código del Producto a Eliminar:</label>
+          <input
+            type="text"
+            id="codigoEliminar"
+            name="codigoEliminar"
+            required
+          />
+          <br />
+          <button type="submit">Eliminar Producto</button>
+        </form>
+      </div>
+    </fieldset>
+  </body>
+</html>

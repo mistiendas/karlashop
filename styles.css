@@ -1,0 +1,209 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+html {
+  scroll-padding-top: 0px; /* Para anclas (#id) */
+}
+
+#icono {
+  display: none;
+  z-index: 1001;
+}
+
+#menupequeño {
+  list-style: none;
+  padding: 1px;
+  display: flex;
+  margin: auto;
+}
+
+#menu,
+#primero,
+#tercero,
+#segundo {
+  background-color: black;
+  color: white;
+  display: flex;
+  list-style: none;
+  position: static;
+}
+
+#primero {
+  flex: 60%;
+  align-items: center;
+}
+
+#segundo {
+  flex: 30%;
+  font-size: 70%;
+  text-align: center;
+  display: block;
+  color: black;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+#tercero {
+  margin: 1% 1% 1% 1%;
+  font-size: 25px;
+  padding: 1%;
+}
+
+#menu li {
+  list-style-type: none;
+  margin: 1%;
+  padding: 1%;
+}
+
+#menu ul {
+  list-style-type: none;
+  padding: 0;
+  display: none;
+}
+
+#menu li:hover {
+  position: relative;
+  background-color: #6c6260;
+}
+
+#menu li:hover ul {
+  display: block;
+  position: absolute;
+  background-color: black;
+  top: 100%;
+}
+
+#segundoi {
+  display: flex;
+  align-items: top;
+  justify-content: center;
+  width: 100%;
+}
+
+/*---------------------------------------------------------------------------------------------------------------*/
+
+#mujer,
+#hombre {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.FimgU {
+  width: 50%;
+  height: auto;
+  margin: 1%;
+}
+
+#hombre > .producto {
+  background-color: #3a959f;
+  color: white;
+  z-index: 2;
+}
+
+.producto {
+  background-color: antiquewhite;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1%;
+  width: 20%;
+  display: flex;
+  position: relative;
+  padding: 10px;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.producto:hover {
+  background-color: #6c6260;
+  color: white;
+  z-index: 2;
+}
+
+.producto:hover .FimgU {
+  transform: scale(1.1);
+
+  transition: transform 1s;
+}
+
+#hombre > .producto:hover {
+  background-color: #4a7f87;
+}
+#hrs {
+  display: block;
+}
+
+/*---------------------------------------------------------------------------------------------------------------*/
+
+@media only screen and (max-width: 768px) {
+  #icono {
+    display: block;
+    font-size: 40px;
+    margin: 2%;
+  }
+
+  #menu {
+    display: none;
+  }
+
+  #hrs {
+    display: block;
+  }
+
+  #hombre,
+  #mujer {
+    flex-direction: column;
+    align-items: center; /* para que se centren horizontalmente */
+  }
+
+  .producto {
+    width: 80%;
+    margin: 10% 0; /* margen vertical para separar los productos */
+  }
+
+  header #menu {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 38px;
+  }
+
+  header #menu li {
+    margin: 10px 0;
+    z-index: 2;
+    padding: 4%;
+  }
+
+  #primero,
+  #tercero {
+    flex-direction: column;
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  #segundo {
+    display: none; /* Ocultar el segundo menú en pantallas pequeñas */
+  }
+
+  #menu li:hover {
+    position: relative;
+    background-color: #6c6260;
+  }
+
+  #menu li:hover ul {
+    display: block;
+    position: absolute;
+    background-color: black;
+    top: 100%;
+  }
+
+  html {
+    scroll-padding-top: 0px; /* Para anclas (#id) */
+  }
+}
