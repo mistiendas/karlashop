@@ -125,7 +125,7 @@ html {
   display: flex;
   flex-wrap: wrap; /* para que bajen si no caben */
   gap: 20px; /* espacio entre productos */
-  justify-content: flex-start; /* puedes usar center o space-between */
+  justify-content: flex-start;
 }
 
 /*---------------------------------------------------------------------------------------------------------------*/
@@ -143,12 +143,6 @@ html {
 
   #hrs {
     display: block;
-  }
-
-  #hombre,
-  #mujer {
-    flex-direction: column;
-    align-items: center; /* para que se centren horizontalmente */
   }
 
   .producto {
@@ -195,6 +189,14 @@ html {
   html {
     scroll-padding-top: 0px; /* Para anclas (#id) */
   }
+
+  #contenedorH,
+  #contenedorM,
+  #contenedorT,
+  #contenedorA,
+  #contenedorHo {
+    margin-left: 12%;
+  }
 }
 
 #img2,
@@ -213,6 +215,7 @@ html {
 /* Plantilla */
 
 #plantilla {
+  display: none;
   margin: 1px;
   padding: 0px;
 }
