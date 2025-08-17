@@ -129,10 +129,41 @@
       <h4 id="descipcion">Descipcion</h4>
       <h5 id="desLarga">Descipcion Larga</h5>
       <p id="precio">1</p>
-      <button onclick="agregarAlCarrito(this)">Agregar al carrito</button>
+      <button id="bcarrito" onclick="agregarAlCarrito(this)">Agregar al carrito</button>
     </div>
+    
+    <section id="formularioPedido" style="display:none;">
+      <div class="pedido-container">
+      <h2>🛒 Completar pedido</h2>
 
-    <button onclick="verCarrito()">ver carrito</button>
+      <!-- Resumen del carrito -->
+      <div id="resumenCarrito"></div>
+
+      <!-- Formulario -->
+      <form id="pedidoForm">
+        <div class="form-group">
+          <label for="nombreCliente">Nombre cliente</label>
+          <input type="text" id="nombreCliente" required />
+        </div>
+
+        <div class="form-group">
+          <label for="celularCliente">Celular cliente</label>
+          <input type="tel" id="celularCliente" required />
+        </div>
+
+        <div class="form-group">
+          <label for="direccionCliente">Dirección cliente</label>
+          <input type="text" id="direccionCliente" required />
+        </div>
+
+        <button type="submit" class="btn-enviar">Enviar pedido ✅</button>
+      </form>
+    </div>
+    </section>
+
+    <!-- Botón para abrir el formulario -->
+    <button onclick="mostrarFormularioPedido()">Finalizar pedido</button>
+    
 
     <footer>
       <p>&copy; 2025 Karla Shop. Todos los derechos reservados.</p>

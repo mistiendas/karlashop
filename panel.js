@@ -1,5 +1,5 @@
 if (localStorage.getItem("inicio") === "true") {
-  window.location.href = "Panel.html";
+  window.location.href = "panel.html";
 } else {
   window.location.href = "admin.html";
   localStorage.setItem("inicio", "false");
@@ -13,7 +13,7 @@ addEventListener("DOMContentLoaded", () => {
 });
 
 const URL =
-  "https://script.google.com/macros/s/AKfycbwl_rLRMoMyws_I4K8MSXTl3T8sXQAgyB1dPdzUky8Y_ix3D6hNS3e2lFhR7wKhxs3c/exec";
+  "https://script.google.com/macros/s/AKfycbwSBZup1_hgwYEiTt-NlguFI722smRVPyIbuzzv5l_uypu8dEq5rGcuwM3CsCCSEGdA/exec";
 let productos = [];
 
 addEventListener("click", (e) => {

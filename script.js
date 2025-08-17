@@ -1,6 +1,6 @@
 var mostrarMenu = false;
 const url =
-  "https://script.google.com/macros/s/AKfycbwl_rLRMoMyws_I4K8MSXTl3T8sXQAgyB1dPdzUky8Y_ix3D6hNS3e2lFhR7wKhxs3c/exec";
+  "https://script.google.com/macros/s/AKfycbwSBZup1_hgwYEiTt-NlguFI722smRVPyIbuzzv5l_uypu8dEq5rGcuwM3CsCCSEGdA/exec";
 let productos = [];
 let carrito = [];
 
@@ -57,10 +57,12 @@ function agregarAlCarrito(esteProducto) {
   let producto = esteProducto.parentElement;
   let nombre = producto.querySelector("#nombre").textContent;
   let precio = producto.querySelector("#precio").textContent;
+  let img1 = producto.querySelector("#img1").src;
 
   let pedido = {
     nombreP: nombre,
     PrecioP: precio,
+    imagenP: img1,
   };
 
   carrito.push(pedido);
@@ -90,10 +92,11 @@ function cargarProductos(productos) {
     clone.querySelector("#img1").src = element["Link imagen"];
     clone.querySelector("#img2").src = element["Link imagen dos"];
     clone.querySelector("#img3").src = element["Link imagen tres"];
-    clone.querySelector("#nombre").textContent = element["Nombre "];
+    clone.querySelector("#nombre").textContent =
+      element["Nombre "].toUpperCase();
     clone.querySelector("#precio").textContent = "$" + element["Precio venta"];
     clone.querySelector("#descipcion").textContent =
-      element["Descripcion"] || "";
+      element["Descripcion Corta"] || "";
     clone.querySelector("#desLarga").textContent =
       element["Descripcion Larga"] || "";
 
@@ -120,9 +123,92 @@ function cargarProductos(productos) {
         return;
     }
 
-    // organizar imagenes
-
     // Insertar producto en el contenedor correspondiente
     contenedor.appendChild(clone);
   });
+}
+
+function mostrarFormularioPedido() {
+  let total = localStorage.getItem("carrito");
+  if (!total) {
+    alert("Tu carrito está vacío");
+    return;
+  }
+
+  carritoT = JSON.parse(total);
+
+  let resumen = `
+    <h3>Resumen del pedido:</h3>
+    ${carritoT
+      .map(
+        (p, i) => `
+        <div class="producto-resumen">
+          <img src="${p.imagenP}" alt="${p.nombreP}">
+
+          <div>
+            <span><b>${p.nombreP}</b></span><br>
+            <span>${p.PrecioP}</span>
+          </div>
+        </div>
+      `
+      )
+      .join("")}
+    <p><b>Total productos:</b> ${carritoT.length}</p>
+  `;
+
+  document.getElementById("resumenCarrito").innerHTML = resumen;
+  document.getElementById("formularioPedido").style.display = "block";
+}
+
+// Escuchar el submit del formulario
+document.getElementById("pedidoForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  enviarPedido();
+});
+
+function enviarPedido() {
+  let carritoGuardado = localStorage.getItem("carrito");
+  if (!carritoGuardado) {
+    alert("Tu carrito está vacío");
+    return;
+  }
+
+  let carrito = JSON.parse(carritoGuardado);
+
+  // Calcular total (ejemplo: suma de precios)
+  function calcularTotal() {
+    return carrito.reduce((acc, item) => {
+      let precio = parseFloat(item.PrecioP.replace("$", "").trim()) || 0;
+      return acc + precio;
+    }, 0);
+  }
+
+  const pedido = {
+    producto: carrito.map((p) => p.nombreP).join(", "),
+    cantidad: carrito.length,
+    categoria: "General", // o puedes tomarlo de p.categoria si lo guardas
+    productoGratis: "Ninguno", // opcional, si manejas promos
+    nombre: document.getElementById("nombreCliente").value,
+    celular: document.getElementById("celularCliente").value,
+    direccion: document.getElementById("direccionCliente").value,
+    total: calcularTotal(),
+  };
+
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify({
+      action: "guardarPedido",
+      pedido: pedido,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      alert("✅ Pedido enviado correctamente");
+      localStorage.removeItem("carrito");
+      document.getElementById("formularioPedido").style.display = "none";
+    })
+    .catch((err) => {
+      console.error("Error al enviar pedido:", err);
+      alert("❌ Hubo un error al enviar el pedido");
+    });
 }
