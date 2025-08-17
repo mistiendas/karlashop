@@ -207,3 +207,13 @@ html {
     scroll-padding-top: 0px; /* Para anclas (#id) */
   }
 }
+
+#img2,
+#img3 {
+  display: none;
+}
+
+#img1 {
+  width: 100%;
+  width: 100%;
+}

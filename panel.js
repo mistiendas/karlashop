@@ -1,5 +1,5 @@
 if (localStorage.getItem("inicio") === "true") {
-  window.location.href = "panel.html";
+  window.location.href = "Panel.html";
 } else {
   window.location.href = "admin.html";
   localStorage.setItem("inicio", "false");
@@ -187,4 +187,3 @@ function eliminarProducto(codigo) {
     })
     .catch((error) => console.error("Error al eliminar producto:", error));
 }
-
