@@ -87,25 +87,6 @@ html {
 
 /*---------------------------------------------------------------------------------------------------------------*/
 
-#mujer,
-#hombre {
-  display: flex;
-  margin: 0;
-  padding: 0;
-}
-
-.FimgU {
-  width: 50%;
-  height: auto;
-  margin: 1%;
-}
-
-#hombre > .producto {
-  background-color: #3a959f;
-  color: white;
-  z-index: 2;
-}
-
 .producto {
   background-color: antiquewhite;
   flex-direction: column;
@@ -132,11 +113,19 @@ html {
   transition: transform 1s;
 }
 
-#hombre > .producto:hover {
-  background-color: #4a7f87;
-}
 #hrs {
   display: block;
+}
+
+#contenedorH,
+#contenedorM,
+#contenedorT,
+#contenedorA,
+#contenedorHo {
+  display: flex;
+  flex-wrap: wrap; /* para que bajen si no caben */
+  gap: 20px; /* espacio entre productos */
+  justify-content: flex-start; /* puedes usar center o space-between */
 }
 
 /*---------------------------------------------------------------------------------------------------------------*/
@@ -213,7 +202,17 @@ html {
   display: none;
 }
 
-#img1 {
+.FimgU {
   width: 100%;
-  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+/* Plantilla */
+
+#plantilla {
+  margin: 1px;
+  padding: 0px;
 }

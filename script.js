@@ -120,6 +120,8 @@ function cargarProductos(productos) {
         return;
     }
 
+    // organizar imagenes
+
     // Insertar producto en el contenedor correspondiente
     contenedor.appendChild(clone);
   });
