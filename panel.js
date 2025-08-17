@@ -1,5 +1,5 @@
 if (localStorage.getItem("inicio") === "true") {
-  window.location.href = "ah.html";
+  window.location.href = "panel.html";
 } else {
   window.location.href = "admin.html";
   localStorage.setItem("inicio", "false");

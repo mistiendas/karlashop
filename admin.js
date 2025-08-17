@@ -22,7 +22,7 @@ addEventListener("click", (e) => {
         if (data === "ok") {
           alert("Usuario registrado correctamente");
           localStorage.setItem("inicio", "true");
-          window.location.href = "ah.html";
+          window.location.href = "panel.html";
         } else {
           alert("Error al registrar el usuario ");
           localStorage.setItem("inicio", "false");
