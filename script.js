@@ -1,6 +1,6 @@
 var mostrarMenu = false;
 const url =
-  "https://script.google.com/macros/s/AKfycbwSBZup1_hgwYEiTt-NlguFI722smRVPyIbuzzv5l_uypu8dEq5rGcuwM3CsCCSEGdA/exec";
+  "https://script.google.com/macros/s/AKfycbyOxtnd5C-Eqh6q9jFxuRoWV2BNeKPHta926eRFlUAUYHJM0KUSfL3w5qd8aEHbYFeT/exec";
 let productos = [];
 let carrito = [];
 
@@ -33,14 +33,11 @@ function ocultarMenu() {
 
 window.addEventListener("scroll", () => {
   if (mostrarMenu && window.innerWidth <= 768) {
-    // Si el ancho de la pantalla es mayor a 768px y el menú está visible, ocultarlo
     ocultarMenu();
   }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Cuando cargue el DOM, traer los productos
-
   fetch(url, {
     method: "POST",
     body: JSON.stringify({ action: "obtenerProductos" }),
@@ -66,29 +63,19 @@ function agregarAlCarrito(esteProducto) {
   };
 
   carrito.push(pedido);
-
   localStorage.setItem("carrito", JSON.stringify(carrito));
-}
-
-function verCarrito() {
-  console.clear();
-  let total = localStorage.getItem("carrito");
-  carritoT = JSON.parse(total);
-  carritoT.forEach((element) => {
-    console.log(element);
-  });
+  alert("Producto agregado al carrito!");
 }
 
 function cargarProductos(productos) {
   let plantilla = document.getElementById("plantilla");
-  plantilla.style.display = "none"; // ocultamos el original
+  plantilla.style.display = "none";
 
   productos.forEach((element) => {
     const clone = plantilla.cloneNode(true);
     clone.id = element["Codigo Producto"];
     clone.style.display = "block";
 
-    // Reemplazar datos
     clone.querySelector("#img1").src = element["Link imagen"];
     clone.querySelector("#img2").src = element["Link imagen dos"];
     clone.querySelector("#img3").src = element["Link imagen tres"];
@@ -100,7 +87,6 @@ function cargarProductos(productos) {
     clone.querySelector("#desLarga").textContent =
       element["Descripcion Larga"] || "";
 
-    // Elegir contenedor según categoría
     let contenedor;
     switch (element["Categoria"]) {
       case "HOMBRE":
@@ -123,14 +109,13 @@ function cargarProductos(productos) {
         return;
     }
 
-    // Insertar producto en el contenedor correspondiente
     contenedor.appendChild(clone);
   });
 }
 
 function mostrarFormularioPedido() {
   let total = localStorage.getItem("carrito");
-  if (!total) {
+  if (!total || JSON.parse(total).length === 0) {
     alert("Tu carrito está vacío");
     return;
   }
@@ -144,7 +129,6 @@ function mostrarFormularioPedido() {
         (p, i) => `
         <div class="producto-resumen">
           <img src="${p.imagenP}" alt="${p.nombreP}">
-
           <div>
             <span><b>${p.nombreP}</b></span><br>
             <span>${p.PrecioP}</span>
@@ -154,13 +138,22 @@ function mostrarFormularioPedido() {
       )
       .join("")}
     <p><b>Total productos:</b> ${carritoT.length}</p>
+    <p><b>Total a pagar:</b> $${calcularTotalCarrito(carritoT)}</p>
   `;
 
   document.getElementById("resumenCarrito").innerHTML = resumen;
   document.getElementById("formularioPedido").style.display = "block";
 }
 
-// Escuchar el submit del formulario
+function calcularTotalCarrito(carrito) {
+  return carrito
+    .reduce((total, item) => {
+      const precio = parseFloat(item.PrecioP.replace("$", "").trim()) || 0;
+      return total + precio;
+    }, 0)
+    .toFixed(2);
+}
+
 document.getElementById("pedidoForm").addEventListener("submit", function (e) {
   e.preventDefault();
   enviarPedido();
@@ -168,30 +161,31 @@ document.getElementById("pedidoForm").addEventListener("submit", function (e) {
 
 function enviarPedido() {
   let carritoGuardado = localStorage.getItem("carrito");
-  if (!carritoGuardado) {
+  if (!carritoGuardado || JSON.parse(carritoGuardado).length === 0) {
     alert("Tu carrito está vacío");
     return;
+    e.preventDefault();
   }
 
   let carrito = JSON.parse(carritoGuardado);
+  const total = calcularTotalCarrito(carrito);
 
-  // Calcular total (ejemplo: suma de precios)
-  function calcularTotal() {
-    return carrito.reduce((acc, item) => {
-      let precio = parseFloat(item.PrecioP.replace("$", "").trim()) || 0;
-      return acc + precio;
-    }, 0);
+  const nombre = document.getElementById("nombreCliente").value;
+  const celular = document.getElementById("celularCliente").value;
+  const direccion = document.getElementById("direccionCliente").value;
+
+  if (!nombre || !celular || !direccion) {
+    alert("Por favor completa todos los campos del formulario");
+    return;
   }
 
   const pedido = {
-    producto: carrito.map((p) => p.nombreP).join(", "),
-    cantidad: carrito.length,
-    categoria: "General", // o puedes tomarlo de p.categoria si lo guardas
-    productoGratis: "Ninguno", // opcional, si manejas promos
-    nombre: document.getElementById("nombreCliente").value,
-    celular: document.getElementById("celularCliente").value,
-    direccion: document.getElementById("direccionCliente").value,
-    total: calcularTotal(),
+    productos: carrito,
+    total: total,
+    nombre: nombre,
+    celular: celular,
+    direccion: direccion,
+    fecha: new Date().toISOString(),
   };
 
   fetch(url, {
@@ -203,9 +197,15 @@ function enviarPedido() {
   })
     .then((res) => res.json())
     .then((data) => {
-      alert("✅ Pedido enviado correctamente");
-      localStorage.removeItem("carrito");
-      document.getElementById("formularioPedido").style.display = "none";
+      if (data.success) {
+        alert("✅ Pedido enviado correctamente");
+        localStorage.removeItem("carrito");
+        document.getElementById("formularioPedido").style.display = "none";
+        // Opcional: recargar la página o redirigir
+        window.location.reload();
+      } else {
+        alert("❌ Error al guardar el pedido: " + (data.message || ""));
+      }
     })
     .catch((err) => {
       console.error("Error al enviar pedido:", err);
