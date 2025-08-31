@@ -1,167 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KarlaShop</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="script.js"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-      rel="stylesheet"
-    />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KarlaShop</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
-  <body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+  <div id="hrs">
+    <hr style="border: 0cap" />
+    <hr style="border: 0cap" />
+    <hr style="border: 0cap" />
+  </div>
+
+  <header>
+    <ul id="menupequeño">
+      <li>
+        <span class="material-symbols-outlined" id="icono"> menu </span>
+      </li>
+      <li id="segundoi">
+        <h1 style="font-size: 30px">KS</h1>
+      </li>
+    </ul>
+  </header>
+
+  <header id="menugrande">
+    <ul id="menu">
+      <div id="primero">
+        <li onclick="window.location.href='#localtenis'">TENIS</li>
+        <li onclick="window.location.href='#localhombre'">HOMBRE</li>
+        <li onclick="window.location.href='#productos'">MUJER</li>
+        <li onclick="window.location.href='#localhogar'">HOGAR</li>
+        <li onclick="window.location.href='#localaccesorios'">ACCESORIOS</li>
+      </div>
+
+      <div id="segundo">
+        <li>
+          <h1>KS</h1>
+        </li>
+      </div>
+
+      <div id="tercero">
+        <li onclick="mostrarFormularioPedido()">Carrito</li>
+      </div>
+    </ul>
+  </header>
+
+  <div>
     <div id="hrs">
       <hr style="border: 0cap" />
       <hr style="border: 0cap" />
       <hr style="border: 0cap" />
     </div>
+    <div id="hrs">
+      <hr style="border: 0cap" />
+      <hr style="border: 0cap" />
+      <hr style="border: 0cap" />
+    </div>
+    <div id="hrs">
+      <hr style="border: 0cap" />
+      <hr style="border: 0cap" />
+      <hr style="border: 0cap" />
+    </div>
+    <div id="hrs">
+      <hr style="border: 0cap" />
+      <hr style="border: 0cap" />
+      <hr style="border: 0cap" />
+    </div>
+  </div>
 
-    <header>
-      <ul id="menupequeño">
-        <li>
-          <span class="material-symbols-outlined" id="icono"> menu </span>
-        </li>
-        <li id="segundoi"><h1 style="font-size: 30px">KS</h1></li>
-      </ul>
-    </header>
-
-    <header id="menugrande">
-      <ul id="menu">
-        <div id="primero">
-          <li onclick="window.location.href='#localtenis'">TENIS</li>
-          <li onclick="window.location.href='#localhombre'">HOMBRE</li>
-          <li onclick="window.location.href='#productos'">MUJER</li>
-          <li onclick="window.location.href='#localhogar'">HOGAR</li>
-          <li onclick="window.location.href='#localaccesorios'">ACCESORIOS</li>
-        </div>
-
-        <div id="segundo">
-          <li>
-            <h1>KS</h1>
-          </li>
-        </div>
-
-        <div id="tercero">
-          <li onclick="mostrarFormularioPedido()">Carrito</li>
-        </div>
-      </ul>
-    </header>
-
-    <div>
-      <div id="hrs">
-        <hr style="border: 0cap" />
-        <hr style="border: 0cap" />
-        <hr style="border: 0cap" />
-      </div>
-      <div id="hrs">
-        <hr style="border: 0cap" />
-        <hr style="border: 0cap" />
-        <hr style="border: 0cap" />
-      </div>
-      <div id="hrs">
-        <hr style="border: 0cap" />
-        <hr style="border: 0cap" />
-        <hr style="border: 0cap" />
-      </div>
-      <div id="hrs">
-        <hr style="border: 0cap" />
-        <hr style="border: 0cap" />
-        <hr style="border: 0cap" />
-      </div>
+  <section id="productos">
+    <h2 id=>
+      MUJER
+      <hr />
+    </h2>
+    <div id="mujer">
+      <div id="contenedorM"></div>
     </div>
 
-    <section id="productos">
-      <h2 id=>
-        MUJER
-        <hr />
-      </h2>
-      <div id="mujer">
-        <div id="contenedorM"></div>
-      </div>
+    <h2 id="localhombre">
+      HOMBRE
+      <hr />
+    </h2>
 
-      <h2 id="localhombre">
-        HOMBRE
-        <hr />
-      </h2>
-
-      <div id="hombre">
-        <div id="contenedorH"></div>
-      </div>
-
-      <h2 id="localtenis">
-        TENIS
-        <hr />
-      </h2>
-
-      <div id="tenis">
-        <div id="contenedorT"></div>
-      </div>
-
-      <h2 id="localhogar">
-        HOGAR
-        <hr />
-      </h2>
-
-      <div id="hogar">
-        <div id="contenedorHogar"></div>
-      </div>
-
-      <h2 id="localaccesorios">
-        ACCESORIOS
-        <hr />
-      </h2>
-
-      <div id="accesorios">
-        <div id="contenedorA"></div>
-      </div>
-    </section>
-
-    <div id="plantilla" class="producto">
-      <img src="" class="FimgU" id="img1" />
-      <img src="" class="FimgU" id="img2" />
-      <img src="" class="FimgU" id="img3" />
-      <h3 id="nombre">NOMBREsss</h3>
-      <h4 id="descipcion">Descipcion</h4>
-      <h5 id="desLarga">Descipcion Larga</h5>
-      <p id="precio">1</p>
-      <button id="bcarrito" onclick="agregarAlCarrito(this)">Agregar al carrito</button>
+    <div id="hombre">
+      <div id="contenedorH"></div>
     </div>
-    
-    <section id="formularioPedido" style="display:none;">
-      <div class="pedido-container">
+
+    <h2 id="localtenis">
+      TENIS
+      <hr />
+    </h2>
+
+    <div id="tenis">
+      <div id="contenedorT"></div>
+    </div>
+
+    <h2 id="localhogar">
+      HOGAR
+      <hr />
+    </h2>
+
+    <div id="hogar">
+      <div id="contenedorHogar"></div>
+    </div>
+
+    <h2 id="localaccesorios">
+      ACCESORIOS
+      <hr />
+    </h2>
+
+    <div id="accesorios">
+      <div id="contenedorA"></div>
+    </div>
+  </section>
+
+  <div id="plantilla" class="producto">
+    <img src="" class="FimgU" id="img1" />
+    <img src="" class="FimgU" id="img2" />
+    <img src="" class="FimgU" id="img3" />
+    <h3 id="nombre">NOMBREsss</h3>
+    <h4 id="descipcion">Descipcion</h4>
+    <h5 id="desLarga">Descipcion Larga</h5>
+    <p id="precio">1</p>
+    <button id="bcarrito" onclick="agregarAlCarrito(this)">Agregar al carrito</button>
+  </div>
+
+  <section id="formularioPedido" style="display:none;">
+    <div class="pedido-container">
       <h2>🛒 Completar pedido</h2>
 
       <!-- Resumen del carrito -->
       <div id="resumenCarrito"></div>
 
       <!-- Formulario -->
-      <div class="form-group">
-      <label for="celularCliente">Celular cliente</label>
-      <input type="tel" id="celularCliente" required />
+      <form id="pedidoForm">
+        <div class="form-group">
+          <label for="nombreCliente">Nombre cliente</label>
+          <input type="text" id="nombreCliente" required />
+        </div>
+
+        <div class="form-group">
+          <label for="celularCliente">Celular cliente</label>
+          <input type="tel" id="celularCliente" required />
+        </div>
+
+        <div class="form-group">
+          <label for="direccionCliente">Dirección cliente</label>
+          <input type="text" id="direccionCliente" required />
+        </div>
+
+        <button type="submit" class="btn-enviar" onclick="enviarPedido()">
+          Enviar pedido ✅
+        </button>
+      </form>
+
+
     </div>
+  </section>
 
-    <div class="form-group">
-      <label for="direccionCliente">Dirección cliente</label>
-      <input type="text" id="direccionCliente" required />
-    </div>
+  <!-- Botón para abrir el formulario -->
+  <button onclick="mostrarFormularioPedido()">Finalizar pedido</button>
 
-    <button type="submit" class="btn-enviar" onclick="enviarPedido()">Enviar pedido ✅</button>
-  </form>
 
-    </div>
-    </section>
+  <footer id="footerId">
+    <p>&copy; 2025 Karla Shop. Todos los derechos reservados.</p>
+  </footer>
+</body>
 
-    <!-- Botón para abrir el formulario -->
-    <button onclick="mostrarFormularioPedido()">Finalizar pedido</button>
-    
-
-    <footer id="footerId">
-      <p>&copy; 2025 Karla Shop. Todos los derechos reservados.</p>
-    </footer>
-  </body>
 </html>
