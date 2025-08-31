@@ -47,7 +47,7 @@
         </div>
 
         <div id="tercero">
-          <li>Carrito</li>
+          <li onclick="mostrarFormularioPedido()">Carrito</li>
         </div>
       </ul>
     </header>
@@ -142,22 +142,37 @@
       <!-- Formulario -->
       <form id="pedidoForm">
         <div class="form-group">
-          <label for="nombreCliente">Nombre cliente</label>
+          <label for="nombreCliente">Nombre del cliente</label>
           <input type="text" id="nombreCliente" required />
         </div>
 
         <div class="form-group">
-          <label for="celularCliente">Celular cliente</label>
+          <label for="celularCliente">Celular</label>
           <input type="tel" id="celularCliente" required />
         </div>
 
         <div class="form-group">
-          <label for="direccionCliente">Dirección cliente</label>
+          <label for="ciudadCliente">Ciudad</label>
+          <select id="ciudadCliente" required>
+            <option value="">Selecciona una ciudad</option>
+            <option value="Villamaría">Villamaría</option>
+            <option value="Manizales">Manizales</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="barrioCliente">Barrio</label>
+          <input type="text" id="barrioCliente" required />
+        </div>
+
+        <div class="form-group">
+          <label for="direccionCliente">Dirección exacta (calle, número, referencias)</label>
           <input type="text" id="direccionCliente" required />
         </div>
 
-        <button type="submit" class="btn-enviar" onclick="enviarPedido()">Enviar pedido ✅</button>
+        <button type="submit" class="btn-enviar">Enviar pedido ✅</button>
       </form>
+
     </div>
     </section>
 
@@ -165,7 +180,7 @@
     <button onclick="mostrarFormularioPedido()">Finalizar pedido</button>
     
 
-    <footer>
+    <footer id="footerId">
       <p>&copy; 2025 Karla Shop. Todos los derechos reservados.</p>
     </footer>
   </body>

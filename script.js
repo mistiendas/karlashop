@@ -114,6 +114,7 @@ function cargarProductos(productos) {
 }
 
 function mostrarFormularioPedido() {
+  document.getElementById("footerId").scrollIntoView({ behavior: "smooth" });
   let total = localStorage.getItem("carrito");
   if (!total || JSON.parse(total).length === 0) {
     alert("Tu carrito está vacío");
@@ -161,32 +162,44 @@ document.getElementById("pedidoForm").addEventListener("submit", function (e) {
 
 function enviarPedido() {
   let carritoGuardado = localStorage.getItem("carrito");
+
   if (!carritoGuardado || JSON.parse(carritoGuardado).length === 0) {
     alert("Tu carrito está vacío");
     return;
-    e.preventDefault();
   }
 
   let carrito = JSON.parse(carritoGuardado);
-  const total = calcularTotalCarrito(carrito);
+  let total = calcularTotalCarrito(carrito);
 
-  const nombre = document.getElementById("nombreCliente").value;
-  const celular = document.getElementById("celularCliente").value;
-  const direccion = document.getElementById("direccionCliente").value;
+  let nombre = document.getElementById("nombreCliente").value;
+  let celular = document.getElementById("celularCliente").value;
+  let ciudad = document.getElementById("ciudadCliente").value;
+  let barrio = document.getElementById("barrioCliente").value;
+  let direccionExacta = document.getElementById("direccionCliente").value;
 
-  if (!nombre || !celular || !direccion) {
+  if (!nombre || !celular || !ciudad || !barrio || !direccionExacta) {
     alert("Por favor completa todos los campos del formulario");
     return;
   }
 
-  const pedido = {
+  let direccionCompleta =
+    "Ciudad: " +
+    ciudad +
+    ", Barrio: " +
+    barrio +
+    ", Dirección: " +
+    direccionExacta;
+
+  let pedido = {
     productos: carrito,
     total: total,
     nombre: nombre,
     celular: celular,
-    direccion: direccion,
+    direccion: direccionCompleta,
     fecha: new Date().toISOString(),
   };
+
+  console.log("Pedido que se envía:", pedido);
 
   fetch(url, {
     method: "POST",
@@ -195,20 +208,21 @@ function enviarPedido() {
       pedido: pedido,
     }),
   })
-    .then((res) => res.json())
-    .then((data) => {
+    .then(function (res) {
+      return res.json();
+    })
+    .then(function (data) {
       if (data.success) {
-        alert("✅ Pedido enviado correctamente");
+        alert("Pedido enviado correctamente");
         localStorage.removeItem("carrito");
         document.getElementById("formularioPedido").style.display = "none";
-        // Opcional: recargar la página o redirigir
         window.location.reload();
       } else {
-        alert("❌ Error al guardar el pedido: " + (data.message || ""));
+        alert("Error al guardar el pedido: " + data.message);
       }
     })
-    .catch((err) => {
+    .catch(function (err) {
       console.error("Error al enviar pedido:", err);
-      alert("❌ Hubo un error al enviar el pedido");
+      alert("Hubo un error al enviar el pedido");
     });
 }
