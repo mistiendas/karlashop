@@ -140,38 +140,18 @@
       <div id="resumenCarrito"></div>
 
       <!-- Formulario -->
-      <form id="pedidoForm">
-        <div class="form-group">
-          <label for="nombreCliente">Nombre del cliente</label>
-          <input type="text" id="nombreCliente" required />
-        </div>
+      <div class="form-group">
+      <label for="celularCliente">Celular cliente</label>
+      <input type="tel" id="celularCliente" required />
+    </div>
 
-        <div class="form-group">
-          <label for="celularCliente">Celular</label>
-          <input type="tel" id="celularCliente" required />
-        </div>
+    <div class="form-group">
+      <label for="direccionCliente">Dirección cliente</label>
+      <input type="text" id="direccionCliente" required />
+    </div>
 
-        <div class="form-group">
-          <label for="ciudadCliente">Ciudad</label>
-          <select id="ciudadCliente" required>
-            <option value="">Selecciona una ciudad</option>
-            <option value="Villamaría">Villamaría</option>
-            <option value="Manizales">Manizales</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="barrioCliente">Barrio</label>
-          <input type="text" id="barrioCliente" required />
-        </div>
-
-        <div class="form-group">
-          <label for="direccionCliente">Dirección exacta (calle, número, referencias)</label>
-          <input type="text" id="direccionCliente" required />
-        </div>
-
-        <button type="submit" class="btn-enviar">Enviar pedido ✅</button>
-      </form>
+    <button type="submit" class="btn-enviar" onclick="enviarPedido()">Enviar pedido ✅</button>
+  </form>
 
     </div>
     </section>

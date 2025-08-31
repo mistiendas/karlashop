@@ -115,6 +115,7 @@ function cargarProductos(productos) {
 
 function mostrarFormularioPedido() {
   document.getElementById("footerId").scrollIntoView({ behavior: "smooth" });
+
   let total = localStorage.getItem("carrito");
   if (!total || JSON.parse(total).length === 0) {
     alert("Tu carrito está vacío");
@@ -124,23 +125,23 @@ function mostrarFormularioPedido() {
   carritoT = JSON.parse(total);
 
   let resumen = `
-    <h3>Resumen del pedido:</h3>
-    ${carritoT
-      .map(
-        (p, i) => `
-        <div class="producto-resumen">
-          <img src="${p.imagenP}" alt="${p.nombreP}">
-          <div>
-            <span><b>${p.nombreP}</b></span><br>
-            <span>${p.PrecioP}</span>
-          </div>
-        </div>
-      `
-      )
-      .join("")}
-    <p><b>Total productos:</b> ${carritoT.length}</p>
-    <p><b>Total a pagar:</b> $${calcularTotalCarrito(carritoT)}</p>
-  `;
+        <h3>Resumen del pedido:</h3>
+        ${carritoT
+          .map(
+            (p, i) => `
+            <div class="producto-resumen">
+                <img src="${p.imagenP}" alt="${p.nombreP}">
+                <div>
+                    <span><b>${p.nombreP}</b></span><br>
+                    <span>${p.PrecioP}</span>
+                </div>
+            </div>
+        `
+          )
+          .join("")}
+        <p><b>Total productos:</b> ${carritoT.length}</p>
+        <p><b>Total a pagar:</b> $${calcularTotalCarrito(carritoT)}</p>
+    `;
 
   document.getElementById("resumenCarrito").innerHTML = resumen;
   document.getElementById("formularioPedido").style.display = "block";
@@ -169,33 +170,23 @@ function enviarPedido() {
   }
 
   let carrito = JSON.parse(carritoGuardado);
-  let total = calcularTotalCarrito(carrito);
+  const total = calcularTotalCarrito(carrito);
 
-  let nombre = document.getElementById("nombreCliente").value;
-  let celular = document.getElementById("celularCliente").value;
-  let ciudad = document.getElementById("ciudadCliente").value;
-  let barrio = document.getElementById("barrioCliente").value;
-  let direccionExacta = document.getElementById("direccionCliente").value;
+  const nombre = document.getElementById("nombreCliente").value;
+  const celular = document.getElementById("celularCliente").value;
+  const direccion = document.getElementById("direccionCliente").value;
 
-  if (!nombre || !celular || !ciudad || !barrio || !direccionExacta) {
+  if (!nombre || !celular || !direccion) {
     alert("Por favor completa todos los campos del formulario");
     return;
   }
 
-  let direccionCompleta =
-    "Ciudad: " +
-    ciudad +
-    ", Barrio: " +
-    barrio +
-    ", Dirección: " +
-    direccionExacta;
-
-  let pedido = {
+  const pedido = {
     productos: carrito,
     total: total,
     nombre: nombre,
     celular: celular,
-    direccion: direccionCompleta,
+    direccion: direccion,
     fecha: new Date().toISOString(),
   };
 
@@ -208,21 +199,20 @@ function enviarPedido() {
       pedido: pedido,
     }),
   })
-    .then(function (res) {
-      return res.json();
-    })
-    .then(function (data) {
+    .then((res) => res.json())
+    .then((data) => {
       if (data.success) {
-        alert("Pedido enviado correctamente");
+        alert("✅ Pedido enviado correctamente");
         localStorage.removeItem("carrito");
         document.getElementById("formularioPedido").style.display = "none";
+        // Opcional: recargar la página o redirigir
         window.location.reload();
       } else {
-        alert("Error al guardar el pedido: " + data.message);
+        alert("❌ Error al guardar el pedido: " + (data.message || ""));
       }
     })
-    .catch(function (err) {
+    .catch((err) => {
       console.error("Error al enviar pedido:", err);
-      alert("Hubo un error al enviar el pedido");
+      alert("❌ Hubo un error al enviar el pedido");
     });
 }
